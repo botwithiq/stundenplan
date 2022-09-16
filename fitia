@@ -1,0 +1,69 @@
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MaterialApp(
+    title: 'Navigation Basics',
+    home: FirstScreen(),
+  ));
+}
+class FirstScreen extends StatelessWidget {
+  const FirstScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Phasen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Phase I'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SecondScreen()),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Tage'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Montag'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ThirdScreen("Phase I Montag")),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+class ThirdScreen extends StatelessWidget {
+  //const ThirdScreen({super.key});
+  late String pagetitle = "";
+
+  ThirdScreen(String pagetitle, {Key? key}) : super(key: key){
+    // ignore: prefer_initializing_formals
+    this.pagetitle = pagetitle;
+  }
+  @override
+  Widget build(BuildContext context, String pagetitle) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(pagetitle),
+      ),
+    );
+  }
+
+}
